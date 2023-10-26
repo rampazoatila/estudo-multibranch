@@ -29,9 +29,9 @@ podTemplate(
 
             if(getGitBranchName() == "homolog")
             {
-                echo "Building $getGitBranchName()"
+                echo "Building ${getGitBranchName()}"
             }else{ 
-                echo "Tag $getGitBranchName()"
+                echo "TAG ${getGitBranchName()}" 
             }
             
             
