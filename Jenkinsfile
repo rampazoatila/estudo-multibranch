@@ -11,7 +11,7 @@ podTemplate(
         }
         stage('Release')
         {
-            if($BRANCH_NAME === 'homolog')
+            if(env.BRANCH_NAME == "homolog")
             {
                 echo "Building $BRANCH_NAME"
             }else{ 
