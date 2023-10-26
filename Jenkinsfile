@@ -11,8 +11,15 @@ podTemplate(
         }
         stage('Release')
         {
+            if($BRANCH_NAME === 'homolog')
+            {
                 echo "Building $BRANCH_NAME"
-                echo "Building $TAG_NAME"
+            }else{ 
+                echo "Tag $TAG_NAME"
+            }
+            
+            
         }
     }
 } 
+
