@@ -16,13 +16,8 @@ podTemplate(
         }
         stage('Release')
         {
-           when {
-             tag 'v.*'
-           }
-           steps {
                 echo "Building $BRANCH_NAME"
                 echo "Building $TAG_NAME"
-            }
         }
     }
 } 
