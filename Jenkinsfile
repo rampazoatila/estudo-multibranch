@@ -9,5 +9,9 @@ podTemplate(
         {
             echo "Deploy"
         }
+        stage('Estou na homolog')
+        {
+            echo "Deploy"
+        }
     }
 } 
