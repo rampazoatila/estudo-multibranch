@@ -26,12 +26,12 @@ podTemplate(
         }
         stage('Release')
         {
-            echo getGitBranchName()
-            if(env.BRANCH_NAME == "homolog")
+
+            if(getGitBranchName() == "homolog")
             {
-                echo "Building $BRANCH_NAME"
+                echo "Building $getGitBranchName()"
             }else{ 
-                echo "Tag $TAG_NAME"
+                echo "Tag $getGitBranchName()"
             }
             
             
