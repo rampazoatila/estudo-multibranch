@@ -2,6 +2,11 @@ def label = "teste"
 podTemplate(
     label: label) {
     node(label) {
+        when { 
+            not { 
+                branch 'main' 
+            }
+        }
         stage('Checkout Project') {
             checkout scm
         }
@@ -9,9 +14,15 @@ podTemplate(
         {
             echo "Deploy"
         }
-        stage('Estou na homolog')
+        stage('Release')
         {
-            echo "Deploy"
+           when {
+             tag 'v.*'
+           }
+           steps {
+                echo "Building $BRANCH_NAME"
+                echo "Building $TAG_NAME"
+            }
         }
     }
 } 
