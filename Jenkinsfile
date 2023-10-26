@@ -2,11 +2,6 @@ def label = "teste"
 podTemplate(
     label: label) {
     node(label) {
-        when { 
-            not { 
-                branch 'main' 
-            }
-        }
         stage('Checkout Project') {
             checkout scm
         }
