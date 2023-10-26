@@ -20,13 +20,19 @@ podTemplate(
         stage('Checkout Project') {
             checkout scm
         }
-        stage('Deploy')
-        {
-            echo "Deploy"
+         stage('Sonarqube Scanner') {
+            if(getGitBranchName() == "homolog" || getGitBranchName() == "main")
+            {
+                container('sonar-scanner') {
+                    withSonarQubeEnv('SonarQube FS') {
+                        sh "sonar-scanner -Dsonar.login=${SONAR_AUTH_TOKEN} -Dsonar.projectBaseDir=. -Dsonar.projectKey=adtech-backoffice  -Dsonar.projectName=adtech-backoffice -Dsonar.exclusions=app/Console/Kernel.php,app/Providers/BroadcastServiceProvider.php,bootstrap/*,public/index.php -Dsonar.language=php -Dsonar.host.url=https://sonarqube.fsvas.com"
+                    }   
+                }
+            }
+            
         }
         stage('Release')
         {
-
             if(getGitBranchName() == "homolog")
             {
                 echo "Building ${getGitBranchName()}"
@@ -34,7 +40,12 @@ podTemplate(
             else if(getGitBranchName() == "main"){
             }
             else{ 
-               echo "TAG ${getGitBranchName()}" 
+               stage('Get Approval'){
+                    input "Vamos nessa!"
+               }
+               stage('Deploy'){
+                echo "Subindo para producao ${getGitBranchName()}"
+               }
             }
             
             
