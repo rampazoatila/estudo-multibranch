@@ -9,9 +9,10 @@ podTemplate(
         {
             echo "Deploy"
         }
-        stage('Estou na homolog')
+        stage('Release')
         {
-            echo "Deploy"
+                echo "Building $BRANCH_NAME"
+                echo "Building $TAG_NAME"
         }
     }
 } 
