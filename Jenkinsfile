@@ -5,5 +5,9 @@ podTemplate(
         stage('Checkout Project') {
             checkout scm
         }
+        stage('Deploy')
+        {
+            echo "Deploy"
+        }
     }
 } 
