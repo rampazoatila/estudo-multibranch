@@ -1,4 +1,19 @@
 def label = "teste"
+
+def getGitBranchName() {
+
+
+   def branchName = scm.branches[0].name
+
+
+   branchName = branchName.replace('/','-').toLowerCase()
+
+
+   return branchName
+
+
+}
+
 podTemplate(
     label: label) {
     node(label) {
@@ -11,8 +26,16 @@ podTemplate(
         }
         stage('Release')
         {
-                echo "Building $BRANCH_NAME"
-                echo "Building $TAG_NAME"
+
+            if(getGitBranchName() == "homolog")
+            {
+                echo "Building ${getGitBranchName()}"
+            }else{ 
+                echo "TAG ${getGitBranchName()}" 
+            }
+            
+            
         }
     }
 } 
+
